@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
 import logo from '../assets/Logo.svg'
 import {HiOutlineDesktopComputer} from 'react-icons/hi'
-import {IoIosArrowDown, IoIosArrowUp,IoPeopleOutline} from 'react-icons/io'
+import {IoIosArrowDown, IoIosArrowUp,IoMdClose} from 'react-icons/io'
 import {GiMoneyStack} from 'react-icons/gi'
 import {MdTrackChanges,MdPeople} from 'react-icons/md'
-import {BsNewspaper} from 'react-icons/bs'
+import {BsNewspaper,BsListNested} from 'react-icons/bs'
 import {FaMailBulk} from 'react-icons/fa'
 import {RiAdminFill} from 'react-icons/ri'
 function Sidebar() {
   const [RFQ,setRFQ] = useState(false);
-  const [Vendor,setVendor] =useState(false)
-  return (
-    <div className='w-full lg:w-[19.4%] bg-[#1C2434] text-[#DEE4EE] min-h-[100vh]'>
+  const [Vendor,setVendor] =useState(false);
+  const [side, setSide] = useState(true)
+  return (<>
+    <button className={`lg:hidden w-12 text-right p-4 ${!side? "hidden lg:block":""}`} onClick={()=>{setSide(e=>!e)}} ><BsListNested className='w-full h-full'/></button>
+    <div className={`w-full lg:w-[19.4%] bg-[#1C2434] text-[#DEE4EE] min-h-[100vh] ${side? "hidden lg:block":""}`}>
+      <div><button className='lg:hidden absolute right-8 top-7 w-8' onClick={()=>{setSide(e=>!e)}}><IoMdClose className='w-full h-full'/></button></div>
       <div className='mx-auto  '>
         <div className='flex flex-col gap-10 '>
           {/* logo */}
@@ -84,6 +87,7 @@ function Sidebar() {
         </div>
       </div>
     </div>
+    </>
 
   )
 }
